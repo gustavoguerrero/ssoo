@@ -1,7 +1,11 @@
-#!bin/bash
+#!/bin/bash
 a=0
-while [ $a -lt $1 ]
+b=1 
+for (( i=1; i<=$1; i++ ))
 do
-	echo "$1 -> $a" 
-	(( a= $a + $a ))
+    echo  "$i-> $a"
+    fn=$((a + b))
+    a=$b
+    b=$fn
 done
+
