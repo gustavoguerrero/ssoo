@@ -1,0 +1,39 @@
+version: '2'
+services:
+  centos7: 
+    image: centos7
+    build:
+      context: ./centos
+      dockerfile: Dockerfile
+    tty: true
+    restart: unless-stopped
+    networks:
+      aplicacion:
+        ipv4_address: 192.168.48.3 
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html
+
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    tty: true 
+    restart: unless-stopped
+    networks:
+      aplicacion:
+        ipv4_address: 192.168.48.2
+    ports:
+      - "3304:3306"
+    volumes:
+      - /db/mysql:/var/lib/mysql
+
+networks:
+  aplicacion:
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 192.168.48.0/20
+         gateway: 192.168.48.1

@@ -1,0 +1,11 @@
+a) nmcli general status
+b) nmcli device  show
+c) nmcli connection show
+d) nmcli device status
+e) nmcli connection show Redmi | grep "ipv4.method"
+f) nmcli connection add con-name red_dhcp ifname enp0s3 type ethernet
+g) nmcli connection add con-name red_estatica ifname enp0s3 type ethernet ipv4.address 172.16.10.5/24 ipv4.gateway 172.16.10.1 ipv4.method manual
+h) 
+
+j)nmcli connection up red_dhcp
+k)systemctl reset NetworkManager.service
